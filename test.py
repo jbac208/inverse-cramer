@@ -28,14 +28,18 @@ with requests.post("https://api.twitter.com/1.1/guest/activate.json", headers=h)
 
 @app.route("/")
 def index():
-    # Get tweet HTML string
-    tweet_url = create_tweet_link(username, data[0]['id'])
-    api_url = f"https://publish.twitter.com/oembed?url={tweet_url}&hide_thread=true"
-    response = requests.get(api_url)
-    tweet_html = response.json()["html"]
+    # Get tweet HTML strings for latest 5 tweets
+    tweet_html_list = []
+    for tweet in data[:5]:
+        tweet_url = create_tweet_link(username, tweet['id'])
+        api_url = f"https://publish.twitter.com/oembed?url={tweet_url}&hide_thread=true"
+        response = requests.get(api_url)
+        tweet_html = response.json()["html"]
+        tweet_html_list.append(tweet_html)
     
-    # Render template with tweet HTML string
-    return render_template("index.html", tweet_html=tweet_html)
+    # Render template with tweet HTML strings
+    return render_template("index.html", tweet_html_list=tweet_html_list)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
