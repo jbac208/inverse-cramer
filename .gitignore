@@ -1,3 +1,6 @@
+# Twitter API credentials (replace with your actual credentials)
+credentials.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
