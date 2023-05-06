@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Jim Cramer's Tweets</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container mt-3">
-        <h1 class="text-center mb-3">Jim Cramer's Tweets</h1>
-        {% for tweet in tweets %}
-        <div class="card mb-3">
-            <div class="card-body">{{ tweet }}</div>
-        </div>
-        {% endfor %}
-    </div>
-</body>
+  <head>
+    <title>My Flask App</title>
+  </head>
+  <body>
+    <h1>Jim Cramer's Latest Tweets</h1>
+    <ul>
+      {% for tweet in tweets %}
+      <li>{{ tweet.created_at }}: {{ tweet.text }}</li>
+      {% endfor %}
+    </ul>
+  </body>
 </html>

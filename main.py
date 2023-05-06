@@ -1,4 +1,7 @@
 import requests
+from flask import Flask, render_template
+
+app = Flask(__name__)
 
 username = "jimcramer"
 
@@ -13,6 +16,15 @@ with requests.post("https://api.twitter.com/1.1/guest/activate.json", headers=h)
     with requests.get(f"https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name={username}", headers=h) as tr:
         data = tr.json()
 
+        '''
         for tweet in data:
             # extract the properties
             print(f"{tweet['created_at']}: {tweet['text']}")
+        '''
+
+@app.route("/")
+def index():
+    return render_template("index.html", tweets=data)
+
+if __name__ == "__main__":
+    app.run(debug=True)
