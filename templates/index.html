@@ -10,5 +10,8 @@
       <li>{{ tweet.created_at }}: {{ tweet.text }}</li>
       {% endfor %}
     </ul>
+    <div class="tweet">
+        {{ tweet_html|safe }}
+      </div>
   </body>
 </html>
